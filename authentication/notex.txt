@@ -1,0 +1,121 @@
+What is Authentication?
+
+Authentication means checking who you are.
+
+A simple example is logging into a website:
+
+Username: alex
+Password: 123456
+
+The server checks your credentials. If they're correct, you're authenticated.
+
+    Authentication = Who are you?
+
+This is different from authorization:
+
+    Authorization = What are you allowed to do?
+
+Authentication in an API
+
+Suppose you have:
+
+GET /users
+
+The API might require you to prove that you're logged in.
+
+A common approach is a token.
+
+First, you log in:
+
+POST /login
+
+You send:
+
+{
+  "username": "alex",
+  "password": "mypassword"
+}
+
+The server verifies the credentials and returns a token:
+
+{
+  "access_token": "eyJhbGciOi..."
+}
+
+Then you use that token when making other requests:
+
+GET /users
+Authorization: Bearer eyJhbGciOi...
+
+The server checks the token and decides whether to process the request.
+Authentication with Postman
+
+In Postman, you might have:
+
+Request:
+
+GET https://api.example.com/users
+
+Headers:
+
+Authorization: Bearer eyJhbGciOi...
+
+Then:
+
+Postman
+   ↓
+GET /users
++ Authorization token
+   ↓
+API
+   ↓
+Check token
+   ↓
+Database
+   ↓
+Response
+
+If you don't provide valid authentication, the API might return:
+
+401 Unauthorized
+
+Common authentication methods
+1. API Key
+
+You receive a key and send it with your request.
+
+X-API-Key: abc123
+
+2. Bearer Token
+
+Authorization: Bearer abc123
+
+Very common in APIs.
+3. JWT
+
+JWT (JSON Web Token) is a common token format used for authentication.
+
+It might look like:
+
+eyJhbGciOiJIUzI1NiIs...
+
+The server can use the token to identify the authenticated user and its associated claims.
+4. OAuth 2.0
+
+Used when an application needs delegated access, such as allowing one service to access another service on your behalf.
+Authentication vs Authorization
+
+This distinction is important:
+
+Authentication
+       ↓
+"Who are you?"
+       ↓
+Alex
+
+Authorization
+       ↓
+"What can Alex do?"
+       ↓
+Alex can READ users
+Alex cannot DELETE users

@@ -1,0 +1,10 @@
+JSON
+full form :- JavaScript Object Notation
+used to sotre and exchange data between api app and websites
+for example :-
+{
+  "name": "Alex",
+  "age": 25,
+  "isStudent": false,
+  "hobbies": ["gaming", "reading", "music"]
+}

@@ -1,0 +1,31 @@
+
+
+    Pydantic checks whether the data you receive is in the format you expect.
+
+Example
+
+Suppose your API expects a user:
+
+from pydantic import BaseModel
+
+class User(BaseModel):
+    name: str
+    age: int
+
+Now you can give it:
+
+user = User(name="Alex", age=25)
+
+Pydantic understands:
+
+name → must be a string
+age  → must be an integer
+
+If someone sends:
+
+{
+  "name": "Alex",
+  "age": "hello"
+}
+
+Pydantic will reject it because "hello" isn't a valid integer.

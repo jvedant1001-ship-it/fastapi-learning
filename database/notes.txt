@@ -1,0 +1,39 @@
+A database is a place where an application stores and organizes data so it can easily save, find, update, and delete information.
+example
+
+Imagine a website where users create accounts. The database might contain:
+id	name	email	age
+1	Alex	alex@email.com	25
+2	Sarah	sarah@email.com	22
+
+When Alex creates an account, the application stores his information in the database.
+
+When Alex logs in, the application reads his information.
+
+If Alex changes his name, the application updates the database.
+
+If Alex deletes his account, the application deletes his data.
+
+That's CRUD:
+
+    Create → store data
+
+    Read → retrieve data
+
+    Update → modify data
+
+    Delete → remove data
+
+How everything connects
+
+        Postman
+           ↓
+      HTTP Request
+           ↓
+          API
+           ↓
+       Database
+           ↓
+      HTTP Response
+           ↓
+        Postman

@@ -1,0 +1,46 @@
+postamn is used to work with websites and apis
+
+what postamn essentially does is act as a web application or better acts as interface 
+which lets you see how does your product performed when you send the request 
+
+how does your backend will react without making a user interface
+
+Example
+
+Suppose an API has:
+
+GET https://example.com/users
+
+In Postman, you can send a GET request to that endpoint and get something like:
+
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alex"
+    },
+    {
+      "id": 2,
+      "name": "Sarah"
+    }
+  ]
+}
+
+
+You can use Postman to:
+
+    GET data from an API
+
+    POST new data
+
+    PUT/PATCH update data
+
+    DELETE data
+
+    Add headers and authentication
+
+    Send JSON request bodies
+
+    Inspect API responses
+
+    Write automated API tests

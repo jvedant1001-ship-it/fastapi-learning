@@ -1,0 +1,14 @@
+CRUD  reffers to operation performed on data 
+which are as follows
+
+
+C -> create -> POST         -> Create a new user
+R -> read   -> GET          -> Get a user's details
+U -> update -> PATCH/PUT    -> Change a user's name
+D -> delete -> DELETE       -> Delete a user
+
+
+Postman → HTTP request → API → Database---
+                                         |
+                                         |
+                                         ----> CRUD

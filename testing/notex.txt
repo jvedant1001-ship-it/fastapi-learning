@@ -1,0 +1,31 @@
+API testing means checking whether an API behaves correctly when you send it different requests.
+
+Suppose API has:
+
+POST /users
+
+send:
+
+{
+  "name": "Alex",
+  "age": 25
+}
+
+might test whether the API returns:
+
+201 Created
+
+and:
+
+{
+  "id": 1,
+  "name": "Alex",
+  "age": 25
+}
+Try accessing a protected endpoint without a token:
+
+GET /profile
+
+Expected:
+
+401 Unauthorized

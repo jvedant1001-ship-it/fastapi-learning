@@ -1,0 +1,228 @@
+These are the **core concepts you need to understand when working with APIs**. Let's connect them with Postman and CRUD.
+
+ ## 1\. HTTP Methods
+
+ An **HTTP method** tells the server what you want to do.
+
+ | Method | Purpose | CRUD |
+| --- | --- | --- |
+| `GET` | Get data | Read |
+| `POST` | Create data | Create |
+| `PUT` | Replace/update data | Update |
+| `PATCH` | Partially update data | Update |
+| `DELETE` | Remove data | Delete |
+
+Example:
+
+```
+GET /users
+```
+
+ means:
+
+ > "Give me the users."
+
+ While:
+
+```
+DELETE /users/5
+```
+
+ means:
+
+ > "Delete user number 5."
+
+---
+
+ ## 2\. Endpoint
+
+ An **endpoint** is a specific URL where an API provides a particular operation.
+
+ For example:
+
+```
+https://api.example.com/users
+```
+
+ This could be an endpoint for users.
+
+ You might have:
+
+```
+GET    /users       → Get all users
+GET    /users/5     → Get user 5
+POST   /users       → Create a user
+PUT    /users/5     → Update user 5
+DELETE /users/5     → Delete user 5
+```
+
+ The `/users/5` part identifies **which resource** you're working with.
+
+ A useful distinction:
+
+```
+https://api.example.com/users/5
+└───────────────┬──────────────┘
+             endpoint
+```
+
+---
+
+ ## 3\. Headers
+
+ **Headers** contain additional information about an HTTP request or response.
+
+ For example:
+
+```
+Content-Type: application/json
+```
+
+ This tells the server:
+
+ > "The data I'm sending is JSON."
+
+ Another common header is:
+
+```
+Authorization: Bearer abc123
+```
+
+ This is commonly used to send an authentication token.
+
+ ### Example request
+
+```
+POST /users
+Content-Type: application/json
+Authorization: Bearer abc123
+```
+
+ Here:
+
+ - `POST` → what we want to do
+- `/users` → where we're doing it
+- `Content-Type` → what format we're sending
+- `Authorization` → authentication information
+
+ In Postman, you can enter these under the **Headers** section.
+
+---
+
+ ## 4\. Status Codes
+
+ After you send a request, the server sends back a **status code** telling you what happened.
+
+ ### Common ones
+
+ | Code | Meaning | Example |
+| --- | --- | --- |
+| `200` | OK | Data retrieved successfully |
+| `201` | Created | New user created |
+| `204` | No Content | Deleted successfully |
+| `400` | Bad Request | Invalid data |
+| `401` | Unauthorized | Authentication required/invalid |
+| `403` | Forbidden | You don't have permission |
+| `404` | Not Found | User doesn't exist |
+| `500` | Server Error | Something went wrong on server |
+
+### Example
+
+ You send:
+
+```
+POST /users
+```
+
+ with:
+
+```
+{
+  "name": "Alex",
+  "age": 25
+}
+```
+
+ The server might respond:
+
+```
+201 Created
+```
+
+ with:
+
+```
+{
+  "id": 10,
+  "name": "Alex",
+  "age": 25
+}
+```
+
+ That means the user was successfully created.
+
+---
+
+ ## Putting everything together
+
+ Imagine you're using **Postman** to create a user.
+
+ ### Request
+
+```
+POST https://api.example.com/users
+```
+
+ **Header:**
+
+```
+Content-Type: application/json
+```
+
+ **Body:**
+
+```
+{
+  "name": "Alex",
+  "age": 25
+}
+```
+
+ ### Server
+
+```
+        POST request
+Postman ──────────────→ API
+                         │
+                         ↓
+                    Pydantic validates
+                         │
+                         ↓
+                      Database
+                         │
+                         ↓
+                    User created
+```
+
+ ### Response
+
+```
+201 Created
+```
+
+```
+{
+  "id": 1,
+  "name": "Alex",
+  "age": 25
+}
+```
+
+ So remember this simple formula:
+
+ > **Method = What you want to do**\
+>  **Endpoint = Where you want to do it**\
+>  **Headers = Extra information**\
+>  **Body = Data you're sending**\
+>  **Status code = What happened**\
+>  **Response = Data the server sends back**
